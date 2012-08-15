@@ -1,13 +1,16 @@
 This is a small config example for how to do exact match on a tokenized field.
 The typical use case is to match or boost exact matches over partial matches, such as:
- * Exact match of person name in a whitepages, "John Doe" won't match "John Doe Johnson"
- * Crawling anchor-texts to web-pages. Exact matches much more valueable than partial
+
+* Exact match of person name in a whitepages, "John Doe" won't match "John Doe Johnson"
+* Crawling anchor-texts to web-pages. Exact matches much more valueable than partial
 
 The technique is s simple text based field-type which automatically inserts special tokens
 at beginning and end of the text, both on index and query side. The special tokens may be
 anything you like, but they should be unique so you don't get false matches. In this example,
 if you index the test "John Doe", the field type will transform that to:
-  "ǣ John Doe Ǣ"
+
+    "ǣ John Doe Ǣ"
+
 This means that when you search "John", you'll not match because "ǣ John Ǣ" is not a match.
 
 The nice thing about this technique, apart from that it's very simple, is that it can be used
@@ -18,6 +21,7 @@ a copyField from name -> exactname, and how to use eDisMax query parser to boost
 the normal name field.
 
 The example can be tested right away, if you have Solr v>=3.4:
+
 1. Download and unpack Solr 3.4 or newer
 2. cd solr/example
 3. java -Dsolr.solr.home=path-to-exactmatch-folder -jar start.jar
