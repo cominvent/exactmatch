@@ -38,12 +38,12 @@
          match a field containing "a brown fox jumped" -->
     <fieldType name="text_lower_exact" class="solr.TextField" positionIncrementGap="100" sortMissingLast="true" omitNorms="true">
       <analyzer>
-	    <charFilter class="solr.PatternReplaceCharFilterFactory" 
-                pattern="^(.*)$" replacement="ǣ $1 Ǣ" maxBlockChars="10000" blockDelimiters="|"/>
+	    <charFilter class="solr.PatternReplaceCharFilterFactory"
+                pattern="^(.*)$" replacement="ǣ $1 Ǣ" />
 	    <tokenizer class="solr.StandardTokenizerFactory"/>
         <filter class="solr.LowerCaseFilterFactory" />
-        <filter class="solr.PatternReplaceFilterFactory" 
-                pattern="([^a-z0-9æøåüäöóéú ])" replacement="" replace="all" />
+        <filter class="solr.PatternReplaceFilterFactory"
+                pattern="([^a-z0-9æøåüäöóéúǣǢ ])" replacement="" replace="all" />
       </analyzer>
     </fieldType>
  </types>
